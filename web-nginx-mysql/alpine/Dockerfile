@@ -6,8 +6,10 @@ ARG APK_FLAGS_PERSISTANT="${APK_FLAGS_COMMON} --clean-protected --no-cache"
 ARG APK_FLAGS_DEV="${APK_FLAGS_COMMON} --no-cache"
 ARG DB_TYPE=mysql
 ENV TERM=xterm
+ENV LANG=es_ES
 
-RUN addgroup zabbix && \
+RUN localedef -i $LANG -c -f UTF-8 -A /usr/share/locale/locale.alias $LANG.UTF-8 \
+    addgroup zabbix && \
     adduser -S \
             -D -G zabbix \
             -h /var/lib/zabbix/ \
