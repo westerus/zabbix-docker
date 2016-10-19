@@ -1,12 +1,12 @@
-FROM alpine:latest
-MAINTAINER Alexey Pustovalov <alexey.pustovalov@zabbix.com>
+FROM westerus/localdef:alpine-latest
+MAINTAINER Westerus <westerus@gmail.com>
 
 ARG APK_FLAGS_COMMON="-q"
 ARG APK_FLAGS_PERSISTANT="${APK_FLAGS_COMMON} --clean-protected --no-cache"
 ARG APK_FLAGS_DEV="${APK_FLAGS_COMMON} --no-cache"
 ARG DB_TYPE=mysql
 ENV TERM=xterm
-ENV LANG=es_ES
+ENV LANG="es_ES.UTF-8"
 
 RUN localedef -i $LANG -c -f UTF-8 -A /usr/share/locale/locale.alias $LANG.UTF-8 \
     addgroup zabbix && \
