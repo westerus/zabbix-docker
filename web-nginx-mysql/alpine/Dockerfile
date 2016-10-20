@@ -9,8 +9,7 @@ ENV TERM=xterm
 ENV IDIOM es_ES
 ENV LANG="$IDIOM.UTF-8"
 
-RUN /usr/local/bin/localedef -i ${IDIOM} -c -f UTF-8 -A /usr/share/locale/locale.alias ${IDIOM}.UTF-8 && \
-    addgroup zabbix && \
+RUN addgroup zabbix && \
     adduser -S \
             -D -G zabbix \
             -h /var/lib/zabbix/ \
@@ -37,7 +36,8 @@ RUN /usr/local/bin/localedef -i ${IDIOM} -c -f UTF-8 -A /usr/share/locale/locale
             php5-ldap \
             php5-json \
             ttf-dejavu && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    localedef -i ${IDIOM} -f UTF-8 ${LANG}
 
 ARG MAJOR_VERSION=3.2
 ARG ZBX_VERSION=${MAJOR_VERSION}.1
