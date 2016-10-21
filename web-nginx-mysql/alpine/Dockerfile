@@ -60,6 +60,7 @@ RUN apk add ${APK_FLAGS_DEV} --virtual build-dependencies \
     rm /usr/share/zabbix/fonts/DejaVuSans.ttf && \
     ./locale/make_mo.sh 2>/dev/null && \
     ln -s /usr/share/fonts/ttf-dejavu/DejaVuSans.ttf /usr/share/zabbix/fonts/graphfont.ttf && \
+    sed -ie "s/'display' => false/'display' => true/g" include/locales.inc.php
     apk del ${APK_FLAGS_COMMON} --purge \
             build-dependencies && \
     rm -rf /var/cache/apk/*
